@@ -4,7 +4,7 @@
 """
 
 
-def power_numbers(*num):
+def power_numbers(*num:int):
     """
     функция, которая принимает N целых чисел,
     и возвращает список квадратов этих чисел
@@ -14,7 +14,7 @@ def power_numbers(*num):
     power_lst = [i**2 for i in num]
     return power_lst
 
-def is_prime(lst):
+def is_prime(lst:list):
     res = []
     for i in lst:
         if i == 2:
@@ -33,7 +33,7 @@ EVEN = "even"
 PRIME = "prime"
 
 
-def filter_numbers(lst_nums, fil):
+def filter_numbers(lst_nums:list, fil:str):
     """
     функция, которая на вход принимает список из целых чисел,
     и возвращает только чётные/нечётные/простые числа
