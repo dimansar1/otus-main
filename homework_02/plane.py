@@ -10,7 +10,7 @@ class Plane(Vehicle):
         self.max_cargo = max_cargo
     cargo = 0
 
-    def load_cargo(self, plus_cargo):
+    def load_cargo(self, plus_cargo:int):
         new_cargo = self.cargo + plus_cargo
         if new_cargo <= self.max_cargo:
             self.cargo = new_cargo

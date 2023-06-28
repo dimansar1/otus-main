@@ -15,7 +15,7 @@ class Vehicle(ABC):
         elif self.started == False and self.fuel == 0:
             raise LowFuelError
 
-    def move(self, dictance):
+    def move(self, dictance:int):
         remaining_fuel = self.fuel - self.fuel_consumption * dictance
         if remaining_fuel >= 0:
             self.fuel = remaining_fuel
