@@ -1,7 +1,7 @@
 __all__ = (
     "db",
-    "Product",
+    "Video",
 )
 
 from .database import db
-from .product import Product
+from .video import Video

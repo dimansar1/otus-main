@@ -3,7 +3,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
-DEFAULT_DB_URL = "postgresql://username:passwd@0.0.0.0:5432/blog"
+DEFAULT_DB_URL = "postgresql://postgres:passwd@0.0.0.0:5432/blog"
 
 SQLALCHEMY_DATABASE_URI = getenv(
     "SQLALCHEMY_DATABASE_URI",

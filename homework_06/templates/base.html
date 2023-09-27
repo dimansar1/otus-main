@@ -23,8 +23,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-sm-0">
         {% for endpoint, label in [
-          ('items_app.next-item', 'Next item'),
-          ('products_app.list', 'Products'),
+          ('videos_app.list', 'Video'),
         ] %}
 
           <li class="nav-item">
@@ -42,15 +41,10 @@
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Products actions
+            Video actions
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{ url_for('products_app.add') }}">Add</a></li>
-            <li><a class="dropdown-item disabled" href="#">Coming soon</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('videos_app.add') }}">Add</a></li>
           </ul>
         </li>
       </ul>

@@ -3,9 +3,16 @@ from wtforms import StringField
 from wtforms.validators import DataRequired, Length
 
 
-class ProductForm(FlaskForm):
+class VideoForm(FlaskForm):
     name = StringField(
-        label="Product name:",
+        label="Video name:",
+        validators=[
+            DataRequired(),
+            Length(min=3),
+        ],
+    )
+    link = StringField(
+        label="Video link:",
         validators=[
             DataRequired(),
             Length(min=3),

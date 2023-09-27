@@ -8,9 +8,11 @@ if TYPE_CHECKING:
     from flask_sqlalchemy.query import Query
 
 
-class Product(db.Model):
+class Video(db.Model):
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
+    link = Column(String, nullable=False)
+    watch = Column(String, nullable=False)
 
     if TYPE_CHECKING:
         query: Query

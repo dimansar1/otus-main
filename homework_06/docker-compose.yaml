@@ -20,7 +20,7 @@ services:
       - ./pg.env
 #    environment:
 #      POSTGRES_DB: blog
-#      POSTGRES_USER: username
+#      POSTGRES_USER: postgres
 #      POSTGRES_PASSWORD: passwd
 #      PGDATA: /var/lib/postgresql/data/pgdata
 #      PGUSER: postgres
