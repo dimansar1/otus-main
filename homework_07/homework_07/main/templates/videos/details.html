@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Video #{{ video.id }} info
+{% endblock %}
+
+{% from 'macros/show-flashed-messages.html' import show_flashed_messages_with_categories %}
+
+{% block body %}
+  {{ show_flashed_messages_with_categories("dark") }}
+
+  <h3>Video {{ video.name }} details</h3>
+
+  <div>
+    <a href="{{ url_for('videos_app.confirm-delete', video_id=video.id) }}">
+      Delete video
+    </a>
+  </div>
+  <div class="space-top">
+    <a class="no-underline" href="{{ url_for('videos_app.list') }}">
+      Back to video list
+    </a>
+  </div>
+  <div class="space-top">
+    <a class="no-underline" href={{ video.link }}>
+      Go to video
+    </a>
+  </div>
+{% endblock %}

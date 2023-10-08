@@ -1,0 +1,57 @@
+{% comment %} {% extends '../base.html' %} {% endcomment %}
+
+{% block title %}
+  Video list
+{% endblock %}
+
+{% comment %} {% from 'macros/show-flashed-messages.html' import show_flashed_messages_with_categories %} {% endcomment %}
+
+{% block body %}
+  <h2>Hello Video list</h2>
+  {% comment %} {{ show_flashed_messages_with_categories() }}
+
+  {% if videos %}
+    <h3>Videos:</h3>
+    <ul class="list-group">
+      {% for video in videos %}
+        <li class="list-group-item p-0">
+          <div class="one_line">
+            <a class="btn btn-link text-start text-decoration-none"
+              href="{{ url_for('videos_app.details', video_id=video.id) }}">
+              {{ video.name }} 
+            </a>
+            |
+            <a class="no-underline text-decoration-none" href={{ video.link }}>
+              {{ video.link }}
+            </a>
+            |
+            <img class="img" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <h3>No videos yet.</h3>
+  {% endif %}
+    {% endcomment %}
+  <div class="my-3">
+    <a
+      class="no-underline"
+      href="../add/">Add new</a>
+  </div>
+  <div class="my-3">
+    <a
+      class="no-underline"
+      href="../..">Back to Index page</a>
+  </div>    
+  <style>
+    .one_line {
+      width: 70px;
+      white-space: nowrap;
+    }
+    .img {
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+{% endblock %}
