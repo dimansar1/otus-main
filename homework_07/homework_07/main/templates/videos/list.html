@@ -6,43 +6,33 @@
 
 {% comment %} {% from 'macros/show-flashed-messages.html' import show_flashed_messages_with_categories %} {% endcomment %}
 
-{% block body %}
+{% block main %}
   <h2>Hello Video list</h2>
-  {% comment %} {{ show_flashed_messages_with_categories() }}
+ {% comment %} {{ show_flashed_messages_with_categories() }} {% endcomment %}
 
   {% if videos %}
     <h3>Videos:</h3>
-    <ul class="list-group">
-      {% for video in videos %}
-        <li class="list-group-item p-0">
+      <ul>
+        {% for video in videos %}
+        <li class="margin">
           <div class="one_line">
-            <a class="btn btn-link text-start text-decoration-none"
-              href="{{ url_for('videos_app.details', video_id=video.id) }}">
-              {{ video.name }} 
-            </a>
-            |
-            <a class="no-underline text-decoration-none" href={{ video.link }}>
-              {{ video.link }}
-            </a>
-            |
-            <img class="img" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
+              <a href="/videos/{{ video.id }}/">{{ video.name }}<a>
+              |
+              <a href="{{ video.link }}">{{ video.link }}<a>
+              |
+              <img class="img" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
           </div>
         </li>
-      {% endfor %}
-    </ul>
+        {% endfor %}
+      </ul>
   {% else %}
     <h3>No videos yet.</h3>
   {% endif %}
-    {% endcomment %}
-  <div class="my-3">
-    <a
-      class="no-underline"
-      href="../add/">Add new</a>
+  <div>
+    <a href="/videos/add/">Add new</a>
   </div>
-  <div class="my-3">
-    <a
-      class="no-underline"
-      href="../..">Back to Index page</a>
+  <div>
+    <a href="/main/">Back to Index page</a>
   </div>    
   <style>
     .one_line {
@@ -50,8 +40,12 @@
       white-space: nowrap;
     }
     .img {
-      width: 200px;
-      height: 200px;
+      width: 75px;
+      height: 75px;
+    }
+    .margin{
+      margin-top: 15px;
+      margin-down: 15px;
     }
   </style>
 {% endblock %}

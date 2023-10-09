@@ -1,5 +1,5 @@
 from django.shortcuts import render
-# from main.models import Video
+from main.models import Video
 # from django.views.generic import FormView
 
 # class VideoForm(FormView):
@@ -23,21 +23,20 @@ def index(request):
     return render(request, "index.html")
 
 def get_videos_list(request):
-    # videos: list[Video] = Video.query.all()
-    return render(request, "videos/list.html")
+    videos = Video.objects.all()
+        
+    context = {
+        'videos': videos,
+    }
+    return render(request, 'videos/list.html', context=context)
 
+def get_video_details(request, video_id):
+    video = Video.objects.get(pk=video_id)
 
-# def get_video_by_id(request, video_id: int) -> Video:
-#     # return Video.query.get_or_404(
-#     #     video_id,
-#     #     description=f"Video #{video_id} not found!",
-#     # )
-#     pass
-
-
-def get_video_details(request, video_id: int):
-    # video = get_video_by_id(video_id=video_id)
-    return render(request, "details.html")
+    context = {
+        'video': video,
+    }
+    return render(request, "videos/details.html", context)
 
 ################################################################
 def create_new_video(request):

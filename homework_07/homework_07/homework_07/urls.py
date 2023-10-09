@@ -19,9 +19,9 @@ from django.urls import path
 import main.views as main
 
 urlpatterns = [
-    path('main/videos/list/', main.get_videos_list),
-    # path('main/videos/<int:video_id>/', main.get_video_details),
-    path('main/videos/add/', main.create_new_video),
+    path('videos/', main.get_videos_list),
+    path('videos/<int:video_id>/', main.get_video_details),
+    path('videos/add/', main.create_new_video),
     # path('videos//<int:video_id>/confirm-delete/', main.confirm_delete_video),
     path('main/', main.index),
     path('admin/', admin.site.urls),
