@@ -1,42 +1,38 @@
 from django.shortcuts import render
 from main.models import Video
-# from django.views.generic import FormView
+from django.views.generic import ListView, DetailView
 
-# class VideoForm(FormView):
-#     name = StringField(
-#         label="Video name:",
-#         validators=[
-#             DataRequired(),
-#             Length(min=3),
-#         ],
-#     )
-#     link = StringField(
-#         label="Video link:",
-#         validators=[
-#             DataRequired(),
-#             Length(min=3),
-#         ],
-#     )
-
+class VideoList(ListView):
+    model = Video
+    def create_context(videos):
+        context = {
+            'videos': videos,
+        }
+        return context
+    def get_all_objects_and_create_context(self):
+        videos = self.model.objects.all()
+        return self.create_context(videos)
+    
+class VideoDetail(DetailView):
+    model = Video
+    def create_context(video):
+        context = {
+            'video': video,
+        }
+        return context
+    def get_video_by_id_and_create_context(self, video_id):
+        video = VideoDetail.model.objects.get(pk=video_id)
+        return self.create_context(video)
+    
 # Create your views here.
 def index(request):
     return render(request, "index.html")
 
 def get_videos_list(request):
-    videos = Video.objects.all()
-        
-    context = {
-        'videos': videos,
-    }
-    return render(request, 'videos/list.html', context=context)
+    return render(request, 'videos/list.html', VideoList.get_all_objects_and_create_context(VideoList))
 
 def get_video_details(request, video_id):
-    video = Video.objects.get(pk=video_id)
-
-    context = {
-        'video': video,
-    }
-    return render(request, "videos/details.html", context)
+    return render(request, "videos/details.html", VideoDetail.get_video_by_id_and_create_context(VideoDetail, video_id))
 
 ################################################################
 def create_new_video(request):
