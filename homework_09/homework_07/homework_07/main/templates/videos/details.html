@@ -1,0 +1,29 @@
+{% comment %} {% extends 'base.html' %} {% endcomment %}
+
+{% block title %}
+  Video info
+{% endblock %}
+
+{% comment %} {% from 'macros/show-flashed-messages.html' import show_flashed_messages_with_categories %} {% endcomment %}
+
+{% block body %}
+  {% comment %} {{ show_flashed_messages_with_categories("dark") }} {% endcomment %}
+
+  <h3>Video {{video.name}} details</h3>
+
+  <div>
+    <a href="#">
+      Delete video
+    </a>
+  </div>
+  <div class="space-top">
+    <a class="no-underline" href="/videos/">
+      Back to video list
+    </a>
+  </div>
+  <div class="space-top">
+    <a class="no-underline" href="{{video.link}}">
+      Go to video
+    </a>
+  </div>
+{% endblock %}
