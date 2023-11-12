@@ -17,3 +17,4 @@ def test_check_the_page_about_status(client):
     url = "/about/"
     response = client.get(url)
     assert response.status_code == 200
+    
