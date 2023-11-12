@@ -2,3 +2,4 @@
 disable=CO114,
         CO115,
         CO116,
+        C0301
