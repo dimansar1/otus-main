@@ -1,5 +1,6 @@
-from . import app
+from . import app, view
 
 __all__ = [
     "app",
+    "view",
 ]
