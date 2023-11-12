@@ -1,5 +1,6 @@
 [MAIN]
-disable=CO114,
-        CO115,
-        CO116,
-        C0301
+disable=C0114,
+        C0115,
+        C0116,
+        C0301,
+        E0401,

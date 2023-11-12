@@ -1,6 +1,16 @@
 name: Pylint
 
-on: [push]
+on: 
+  push:
+    paths-ignore:
+      - README.md
+      - backup/**
+      - homework_01/**
+      - homework_06/**
+      - homework_07/**
+      - homework_09/**
+      - testing/**
+
 
 jobs:
   build:
