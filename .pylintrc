@@ -3,4 +3,10 @@ disable=C0114,
         C0115,
         C0116,
         C0301,
-        E0401,
+        E0401
+
+ignore-paths=^homework_06/.*$,
+             ^homework_01/.*$,
+             ^homework_07/.*$,
+             ^homework_09/.*$,
+             ^testing/.*$,
