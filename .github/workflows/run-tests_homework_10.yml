@@ -33,4 +33,4 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest -s --cov --cov-report html --cov-fail-under 96 homework_10/homework_05/test.py
+        make coverage
