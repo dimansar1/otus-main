@@ -1,0 +1,4 @@
+[MAIN]
+disable=CO114,
+        CO115,
+        CO116,
