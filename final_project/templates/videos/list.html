@@ -17,7 +17,7 @@
         <li class="list-group-item p-0">
           <div class="one_line">
             <a class="btn btn-link text-start text-decoration-none"
-              href="{{ url_for('videos_app.details', video_id=video.id) }}">
+              href="{{ url_for('videos_app.go', video_id=video.id) }}">
               {{ video.name }} 
             </a>
             |
@@ -25,7 +25,13 @@
               {{ video.link }}
             </a>
             |
-            <img class="img" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
+            <a href="{{ url_for('videos_app.go', video_id=video.id) }}">
+              <img class="img" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
+            </a>
+            |
+            <a class="no-underline" href="{{ url_for('videos_app.confirm-delete', video_id=video.id) }}">
+              Delete video
+            </a>
           </div>
         </li>
       {% endfor %}

@@ -27,14 +27,7 @@ def get_video_by_id(video_id: int) -> Video:
         video_id,
         description=f"Video #{video_id} not found!",
     )
-
-
-@videos_app.get("/<int:video_id>/", endpoint="details")
-def get_video_details(video_id: int):
-    video = get_video_by_id(video_id=video_id)
-    return render_template("videos/details.html", video=video)
-
-
+    
 @videos_app.route("/add/", methods=["GET", "POST"], endpoint="add")
 def create_new_video():
     form = VideoForm()
@@ -69,3 +62,8 @@ def confirm_delete_video(video_id: int):
     flash(f"Deleted video {video_name!r}", category="warning")
     url = url_for("videos_app.list")
     return redirect(url)
+
+@videos_app.get("/<int:video_id>/", endpoint="go")
+def get_video_go(video_id: int):
+    video = get_video_by_id(video_id=video_id)
+    return render_template("videos/go.html", video=video)
