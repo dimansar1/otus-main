@@ -30,20 +30,20 @@ def get_video_by_id(video_id: int) -> Video:
     
 @videos_app.route("/add/", methods=["GET", "POST"], endpoint="add")
 def create_new_video():
-    form = VideoForm()
-    if request.method == "GET":
-        return render_template("videos/add.html", form=form)
+    # form = VideoForm()
+    # if request.method == "GET":
+    return render_template("videos/add.html")
 
-    if not form.validate_on_submit():
-        return render_template("videos/add.html", form=form), 400
+    # if not form.validate_on_submit():
+    #     return render_template("videos/add.html", form=form), 400
 
-    watch=form.data["link"].split("=")[1]
-    video = Video(name=form.data["name"], link=form.data["link"], watch=watch)
-    db.session.add(video)
-    db.session.commit()
-    url = url_for("videos_app.details", video_id=video.id)
-    flash(f"Created video {video.name!r}", category="primary")
-    return redirect(url)
+    # watch=form.data["link"].split("=")[1]
+    # video = Video(name=form.data["name"], link=form.data["link"], watch=watch)
+    # db.session.add(video)
+    # db.session.commit()
+    # url = url_for("videos_app.details", video_id=video.id)
+    # flash(f"Created video {video.name!r}", category="primary")
+    # return redirect(url)
 
 
 @videos_app.route(
@@ -67,3 +67,10 @@ def confirm_delete_video(video_id: int):
 def get_video_go(video_id: int):
     video = get_video_by_id(video_id=video_id)
     return render_template("videos/go.html", video=video)
+
+@videos_app.route('/success/', methods = ['POST'], endpoint="success")
+def success(): 
+    if request.method == 'POST': 
+        f = request.files['file'] 
+        f.save(f.filename)
+    return render_template("videos/success.html", name = f.filename) 

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    success
+{% endblock %}
+
+{% block body %} 
+    <p>File uploaded successfully</p> 
+    <p>File Name: {{name}}</p> 
+    <div class="mt-2">
+        <a href="{{ url_for('videos_app.list') }}">
+          Back to video list
+        </a>
+    </div>
+{% endblock %} 
