@@ -1,13 +1,17 @@
+import os
+
 from flask import request
 from flask import redirect
 from flask import url_for
 from flask import Blueprint
 from flask import render_template
 from flask import flash
+from flask import current_app
 
 from models import db, Video
-from .forms.videos import VideoForm
+from werkzeug.utils import secure_filename
 
+from .forms.videos import VideoForm
 
 videos_app = Blueprint(
     "videos_app",
@@ -19,7 +23,7 @@ videos_app = Blueprint(
 @videos_app.get("/", endpoint="list")
 def get_videos_list():
     videos: list[Video] = Video.query.order_by(Video.id).all()
-    return render_template("videos/list.html", videos=videos)
+    return render_template("index.html", videos=videos)
 
 
 def get_video_by_id(video_id: int) -> Video:
@@ -27,23 +31,35 @@ def get_video_by_id(video_id: int) -> Video:
         video_id,
         description=f"Video #{video_id} not found!",
     )
-    
+
+
+@videos_app.get("/<int:video_id>/", endpoint="details")
+def get_video_details(video_id: int):
+    video = get_video_by_id(video_id=video_id)
+    return render_template("videos/details.html", video=video)
+
+
 @videos_app.route("/add/", methods=["GET", "POST"], endpoint="add")
 def create_new_video():
-    # form = VideoForm()
-    # if request.method == "GET":
-    return render_template("videos/add.html")
+    form = VideoForm()
+    if request.method == "GET":
+        return render_template("videos/add.html", form=form)
 
-    # if not form.validate_on_submit():
-    #     return render_template("videos/add.html", form=form), 400
+    if not form.validate_on_submit():
+        return render_template("videos/add.html", form=form), 400
 
-    # watch=form.data["link"].split("=")[1]
-    # video = Video(name=form.data["name"], link=form.data["link"], watch=watch)
-    # db.session.add(video)
-    # db.session.commit()
-    # url = url_for("videos_app.details", video_id=video.id)
-    # flash(f"Created video {video.name!r}", category="primary")
-    # return redirect(url)
+    watch = form.data["link"].split("=")[1]
+    video = Video(name=form.data["name"], link=form.data["link"], watch=watch)
+    db.session.add(video)
+    db.session.commit()
+    url = url_for("videos_app.details", video_id=video.id)
+    flash(f"Created video {video.name!r}", category="primary")
+    return redirect(url)
+
+
+@videos_app.route("/upload/", methods=["GET", "POST"], endpoint="upload")
+def upload_new_video():
+    return render_template("videos/upload.html")
 
 
 @videos_app.route(
@@ -63,14 +79,12 @@ def confirm_delete_video(video_id: int):
     url = url_for("videos_app.list")
     return redirect(url)
 
-@videos_app.get("/<int:video_id>/", endpoint="go")
-def get_video_go(video_id: int):
-    video = get_video_by_id(video_id=video_id)
-    return render_template("videos/go.html", video=video)
 
-@videos_app.route('/success/', methods = ['POST'], endpoint="success")
-def success(): 
-    if request.method == 'POST': 
-        f = request.files['file'] 
-        f.save(f.filename)
-    return render_template("videos/success.html", name = f.filename) 
+@videos_app.route('/success/', methods=['POST'], endpoint="success")
+def success():
+    if request.method == 'POST':
+        f = request.files['file']
+        filename = secure_filename(f.filename)
+        fullpath = os.path.join(current_app.root_path, 'upload', filename)
+        f.save(fullpath)
+        return render_template("videos/success.html", name=fullpath)

@@ -1,23 +1,23 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Confirm delete video #{{ video.id }}
+  Удаление видео - {{ video.name }}
 {% endblock %}
 
 {% block body %}
-  <h3>Are you sure you want to delete video <code>{{ video.name }}</code>?</h3>
-  <h4>This cannot be undone!</h4>
+  <h3>Вы уверены, что хотите удалить видео <code>&quot;{{ video.name }}&quot;</code>?</h3>
+  <h4>Это действие необратимо!</h4>
 
-  <div>
-    <a href="{{ url_for('videos_app.list') }}">
-      Back to video list
-    </a>
-  </div>
-  <br/>
-  <div>
+  <div class="mt-4">
     <form method="post">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-      <input class="btn btn-danger" type="submit" value="Delete">
+      <input class="btn btn-danger" type="submit" value="Удалить">
     </form>
+  </div>
+
+  <div class="mt-5">
+    <a href="{{ url_for('videos_app.list') }}">
+      К списку видео
+    </a>
   </div>
 {% endblock %}

@@ -9,7 +9,7 @@ services:
       CONFIG_CLASS: ProductionConfig
       SQLALCHEMY_DATABASE_URI: postgresql://postgres:passwd@pg:5432/blog
     ports:
-      - "8080:80"
+      - "9000:80"
     depends_on:
       pg:
         condition: service_healthy

@@ -3,6 +3,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent
 
+UPLOAD_FOLDER = '/uploads'
+
 DEFAULT_DB_URL = "postgresql://postgres:passwd@0.0.0.0:5432/blog"
 
 SQLALCHEMY_DATABASE_URI = getenv(
@@ -24,7 +26,6 @@ class ProductionConfig(Config):
 
 class DevelopmentConfig(Config):
     DEBUG = True
-
 
 class TestingConfig(Config):
     TESTING = True

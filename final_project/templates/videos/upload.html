@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Загрузить своё видео
+{% endblock %}
+
+{% block body %}
+  <div>
+    <form action="{{ url_for('videos_app.success') }}" method="post" enctype="multipart/form-data">
+      <input type="file" name="file">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <input class="btn btn-primary" type="submit" value="Загрузить">
+    </form>
+  </div>
+
+  <div class="mt-5">
+    <a href="{{ url_for('videos_app.list') }}">
+      К списку видео
+    </a>
+  </div>
+{% endblock %}

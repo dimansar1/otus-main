@@ -5,14 +5,14 @@ from wtforms.validators import DataRequired, Length
 
 class VideoForm(FlaskForm):
     name = StringField(
-        label="Video name:",
+        label="Название видео",
         validators=[
             DataRequired(),
             Length(min=3),
         ],
     )
     link = StringField(
-        label="Video link:",
+        label="Ссылка на YouTube",
         validators=[
             DataRequired(),
             Length(min=3),

@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
 {% block title %}
-  Video list
+  AppTube - видеохостинг для всех!
 {% endblock %}
 
 {% from 'macros/show-flashed-messages.html' import show_flashed_messages_with_categories %}
 
 {% block body %}
-  <h2>Hello Video list</h2>
   {{ show_flashed_messages_with_categories() }}
 
   {% if videos %}
@@ -17,7 +16,7 @@
         <li class="list-group-item p-0">
           <div class="one_line">
             <a class="btn btn-link text-start text-decoration-none"
-              href="{{ url_for('videos_app.go', video_id=video.id) }}">
+              href="{{ url_for('videos_app.details', video_id=video.id) }}">
               {{ video.name }} 
             </a>
             |
@@ -25,7 +24,7 @@
               {{ video.link }}
             </a>
             |
-            <a href="{{ url_for('videos_app.go', video_id=video.id) }}">
+            <a href="{{ url_for('videos_app.details', video_id=video.id) }}">
               <img class="img" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
             </a>
             |
