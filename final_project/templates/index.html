@@ -15,7 +15,11 @@
       <div class="col">
           <div class="card shadow-sm">
             <a href="{{ url_for('videos_app.details', video_id=video.id) }}">
-              <img class="img-fluid" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
+              {% if video.watch == "-" %}
+                <img class="img-fluid" src="https://idei.club/raznoe/uploads/posts/2023-05/1685543289_idei-club-p-svetoch-mebel-krasivo-60.jpg">
+              {% else %}
+                <img class="img-fluid" src="//i3.ytimg.com/vi/{{ video.watch }}/maxresdefault.jpg">
+              {% endif %}
             </a>
             <div class="card-body">
               <p class="card-text">{{ video.name }}</p>

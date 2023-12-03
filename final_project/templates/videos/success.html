@@ -5,11 +5,12 @@
 {% endblock %}
 
 {% block body %} 
-    <p>File uploaded successfully</p> 
-    <p>File Name: {{name}}</p> 
-    <div class="mt-2">
-        <a href="{{ url_for('videos_app.list') }}">
-          Back to video list
-        </a>
+    <div class="alert alert-success" role="alert">
+        Ваше видео &quot;{{name}}&quot; успешно загружено
     </div>
+  <div class="mt-5">
+    <a href="{{ url_for('videos_app.list') }}">
+      К списку видео
+    </a>
+  </div>
 {% endblock %} 

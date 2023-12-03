@@ -7,9 +7,18 @@
 {% block body %}
   <div>
     <form action="{{ url_for('videos_app.success') }}" method="post" enctype="multipart/form-data">
-      <input type="file" name="file">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-      <input class="btn btn-primary" type="submit" value="Загрузить">
+      <div class="mb-3">
+        <label for="name" class="form-label">Название видео</label>
+        <input type="text" class="form-control" name="name" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="file" class="form-label">Загрузить с компьютера</label>
+        <input type="file" class="form-control" name="file" id="file">
+      </div>
+      <div class="mb-3">
+        <input class="btn btn-primary" type="submit" value="Загрузить">
+      </div>
     </form>
   </div>
 

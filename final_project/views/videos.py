@@ -59,7 +59,8 @@ def create_new_video():
 
 @videos_app.route("/upload/", methods=["GET", "POST"], endpoint="upload")
 def upload_new_video():
-    return render_template("videos/upload.html")
+    form = VideoForm()
+    return render_template("videos/upload.html", form=form.name)
 
 
 @videos_app.route(
@@ -86,5 +87,9 @@ def success():
         f = request.files['file']
         filename = secure_filename(f.filename)
         fullpath = os.path.join(current_app.root_path, 'upload', filename)
+        videopath = os.path.join('/upload', filename)
         f.save(fullpath)
-        return render_template("videos/success.html", name=fullpath)
+        video = Video(name=request.form['name'], link=videopath, watch="-")
+        db.session.add(video)
+        db.session.commit()
+        return render_template("videos/success.html", name=request.form['name'])
